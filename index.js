@@ -1,8 +1,18 @@
-var tcp           = require('../../tcp');
-var instance_skel = require('../../instance_skel');
-var debug;
-var log;
+// var tcp           = require('../../tcp');
+// var instance_skel = require('../../instance_skel');
+// var debug;
+// var log;
 
+import { InstanceBase, runEntrypoint, TCPHelper } from '@companion-module/base'
+import { UpgradeScripts } from './upgrades.js'
+
+class MyModuleInstance extends InstanceBase {
+	constructor(internal) {
+		super(internal)
+		this.updateStatus('disconnected')
+
+
+		
 function instance(system, id, config) {
 	var self = this;
 
