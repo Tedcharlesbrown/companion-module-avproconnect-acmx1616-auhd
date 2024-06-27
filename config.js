@@ -9,7 +9,7 @@ export const ConfigFields = [
 		id: 'info',
 		label: 'Information',
 		width: 12,
-		value: `REPLACE ME`,
+		value: `This module will connect to AVProconnect AC-MX1616-AUHD.`,
 	},
 	{
 		type: 'textinput',
@@ -26,33 +26,4 @@ export const ConfigFields = [
 		default: 7000,
 		regex: Regex.PORT,
 	},
-	// {
-	// 	type: 'dropdown',
-	// 	id: 'prot',
-	// 	label: 'Connect with TCP / UDP',
-	// 	default: 'tcp',
-	// 	choices: [
-	// 		{ id: 'tcp', label: 'TCP' },
-	// 		{ id: 'udp', label: 'UDP' },
-	// 	],
-	// },
-	// {
-	// 	type: 'checkbox',
-	// 	id: 'saveresponse',
-	// 	label: 'Save TCP Response',
-	// 	default: false,
-	// 	isVisible: (configValues) => configValues.prot === 'tcp',
-	// },
-	// {
-	// 	type: 'dropdown',
-	// 	id: 'convertresponse',
-	// 	label: 'Convert TCP Response Format',
-	// 	default: 'none',
-	// 	choices: [
-	// 		{ id: 'none', label: 'No conversion' },
-	// 		{ id: 'hex', label: 'To Hex' },
-	// 		{ id: 'string', label: 'To String' },
-	// 	],
-	// 	isVisible: (configValues) => configValues.prot === 'tcp' && !!configValues.saveresponse,
-	// },
 ]
