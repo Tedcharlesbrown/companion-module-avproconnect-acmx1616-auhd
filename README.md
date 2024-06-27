@@ -6,3 +6,7 @@ See HELP.md and LICENSE
 
 **V1.0.0.**
 * Added presets for all functions 
+
+**V2.0.0**
+* Updated to Companion 3.0
+* Removed some features, but made its base level of usage actually function.
