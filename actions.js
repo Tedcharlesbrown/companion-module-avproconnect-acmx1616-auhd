@@ -125,6 +125,41 @@ export function getActionDefinitions(self) {
 	}
 }
 
+class MyModuleInstance {
+	constructor(system, id, config) {
+		this.system = system
+		this.id = id
+		this.config = config
+
+		this.init()
+	}
+
+	init() {
+		this.init_tcp()
+		this.initActions()
+	}
+
+	init_tcp() {
+		this.socket = new TCPHelper(this.config.host, this.config.port)
+
+		this.socket.on('status_change', (status, message) => {
+			this.log('info', `Status changed: ${status} - ${message}`)
+		})
+
+		this.socket.on('error', (err) => {
+			this.log('error', `Network error: ${err.message}`)
+		})
+
+		this.socket.on('connect', () => {
+			this.log('info', 'Connected')
+		})
+	}
+
+	initActions() {
+		this.setActions(getActionDefinitions(this))
+	}
+}
+
 // SET STA, Show Global System Status
 // SET RST, Reset to Factory Defaults
 // SET ADDR xx, System Reset to Reboot

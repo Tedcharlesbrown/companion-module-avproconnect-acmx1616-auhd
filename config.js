@@ -23,7 +23,7 @@ export const ConfigFields = [
 		id: 'port',
 		label: 'Target Port',
 		width: 4,
-		default: 7000,
+		default: 23,
 		regex: Regex.PORT,
 	},
 ]

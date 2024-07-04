@@ -2,7 +2,7 @@ import { InstanceBase, InstanceStatus, runEntrypoint, TCPHelper } from '@compani
 import { ConfigFields } from './config.js'
 import { getActionDefinitions } from './actions.js'
 
-class GenericTcpUdpInstance extends InstanceBase {
+class AVProConnectACMX1616Instance extends InstanceBase {
 	async init(config) {
 		this.config = config
 
@@ -18,12 +18,7 @@ class GenericTcpUdpInstance extends InstanceBase {
 		}
 
 		this.config = config
-
-		if (this.config.prot == 'tcp') {
-			this.init_tcp()
-
-			this.init_tcp_variables()
-		}
+		this.init_tcp()
 	}
 
 	async destroy() {
@@ -47,7 +42,7 @@ class GenericTcpUdpInstance extends InstanceBase {
 
 		this.updateStatus(InstanceStatus.Connecting)
 
-		if (this.config.host) {
+		if (this.config.host && this.config.port) {
 			this.socket = new TCPHelper(this.config.host, this.config.port)
 
 			this.socket.on('status_change', (status, message) => {
@@ -72,6 +67,11 @@ class GenericTcpUdpInstance extends InstanceBase {
 					this.setVariableValues({ tcp_response: dataResponse })
 				}
 			})
+
+			this.socket.on('connect', () => {
+				this.updateStatus(InstanceStatus.Ok)
+				this.log('info', 'Connected')
+			})
 		} else {
 			this.updateStatus(InstanceStatus.BadConfig)
 		}
@@ -84,4 +84,4 @@ class GenericTcpUdpInstance extends InstanceBase {
 	}
 }
 
-runEntrypoint(GenericTcpUdpInstance, [])
+runEntrypoint(AVProConnectACMX1616Instance, [])
